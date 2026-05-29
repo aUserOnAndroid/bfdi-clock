@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>BFDI Clock APK</title>
+
+  <style>
+
+    @font-face {
+      font-family: "BFDI";
+      src: url("bfdi.ttf");
+    }
+
+    body {
+
+      margin: 0;
+
+      background: black;
+      color: white;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      flex-direction: column;
+
+      height: 100vh;
+
+      overflow: hidden;
+
+      font-family: "BFDI", Arial, sans-serif;
+
+      -webkit-font-smoothing: none;
+      font-smooth: never;
+
+    }
+
+    #clock {
+
+      font-size: 90px;
+
+      color: lime;
+
+      text-shadow:
+        0 0 10px lime,
+        0 0 20px lime,
+        0 0 40px lime;
+
+      margin-bottom: 30px;
+
+    }
+
+    #quote {
+
+      width: 80%;
+
+      text-align: center;
+
+      font-size: 28px;
+
+      color: white;
+
+      text-shadow: 0 0 10px white;
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div id="clock">
+    00:00:00
+  </div>
+
+  <div id="quote">
+    loading bfdi insanity...
+  </div>
+
+  <script>
+
+    const clock = document.getElementById("clock");
+    const quote = document.getElementById("quote");
+
+
+
+    const quotes = [
+
+      "Yeah I know, she was so surprised.",                 // 0
+      "Really? Oh for sure!",                              // 1
+      "Twooooooo!",                                        // 2
+      "Flower went CRAZY!!",                               // 3
+      "dodooddodo X! What's wrong? You look depressed!",   // 4
+      "Care to give me some air? No straw needed!",        // 5
+      "Oh my mint!",                                       // 6
+      "Gelatin, stop eating the contestants.",             // 7
+      "I want revenge!",                                   // 8
+      "Hey guys, for a prank-",                            // 9
+      "NO MORE SNOW!",                                     // 10
+      "BEEP",                                              // 11
+      "Yoylecake!",                                        // 12
+      "Aw seriously?",                                     // 13
+      "Twooooooo!",                                        // 14 (2 PM)
+      "This program was brought to you by Blocky's Funny Doings International.", // 15
+      "I am next level mad.",                              // 16
+      "Donut, dig faster.",                                // 17
+      "Four, recover them!",                               // 18
+      "X, stop screeching.",                               // 19
+      "AAAAAAAAAAAAAAAA",                                  // 20
+      "This is so unfair!",                                // 21
+      "I love cake at stake!",                             // 22
+      "Eraser, that's kinda suspicious."                   // 23
+
+    ];
+
+
+
+    function pad(n) {
+
+      return n.toString().padStart(2, "0");
+
+    }
+
+
+
+    function CheckThisOut() {
+
+      const now = new Date();
+
+
+
+      const hours = pad(now.getHours());
+      const minutes = pad(now.getMinutes());
+      const seconds = pad(now.getSeconds());
+
+
+
+      clock.innerText =
+        `${hours}:${minutes}:${seconds}`;
+
+
+
+      quote.innerText =
+        quotes[now.getHours()];
+
+    }
+
+
+
+    CheckThisOut();
+
+
+
+    setInterval(CheckThisOut, 1000);
+
+  </script>
+
+</body>
+</html>
