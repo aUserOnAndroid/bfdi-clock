@@ -38,6 +38,13 @@
       margin-bottom: 30px;
     }
 
+    #speaker {
+      width: 220px;
+      height: 220px;
+      object-fit: contain;
+      margin-bottom: 20px;
+    }
+
     #quote {
       width: 80%;
       text-align: center;
@@ -52,38 +59,41 @@
 
   <div id="clock">00:00:00</div>
 
+  <img id="speaker" src="placeholder.png" alt="Speaker">
+
   <div id="quote">loading bfdi insanity...</div>
 
   <script>
 
     const clock = document.getElementById("clock");
     const quote = document.getElementById("quote");
+    const speaker = document.getElementById("speaker");
 
     const quotes = [
-      "Yeah I know, she was so surprised.",
-      "Really? Oh for sure!",
-      "Twooooooo!",
-      "Flower went CRAZY!!",
-      "Coiny, you're so dumb!",
-      "Care to give me some air? No straw needed!",
-      "Oh my mint!",
-      "Gelatin, stop eating the contestants.",
-      "I want revenge!",
-      "Hey guys, for a prank-",
-      "NO MORE SNOW!",
-      "BEEP",
-      "Yoylecake!",
-      "Aw seriously?",
-      "Twooooooo!",
-      "This program was brought to you by Blocky's Funny Doings International.",
-      "I am next level mad.",
-      "Donut, dig faster.",
-      "Four, recover them!",
-      "No, I hate YOU!",
-      "AAAAAAAAAAAAAAAA",
-      "This is so unfair!",
-      "I love cake at stake!",
-      "Eraser, that's kinda suspicious."
+      { text: "Yeah I know, she was so surprised.", image: "placeholder.png" },
+      { text: "Really? Oh for sure!", image: "placeholder.png" },
+      { text: "Twooooooo!", image: "https://static.wikia.nocookie.net/battlefordreamisland/images/d/da/TwoBeforePowers.png/revision/latest/scale-to-width-down/1000?cb=20251207181841" },
+      { text: "Flower went CRAZY!!", image: "flower.png" },
+      { text: "Coiny, you're so dumb!", image: "https://static.wikia.nocookie.net/battlefordreamisland/images/f/f5/FireyBFDIAintro.png/revision/latest/scale-to-width-down/1000?cb=20201016154131" },
+      { text: "Care to give me some air? No straw needed!", image: "golfball.png" },
+      { text: "Oh my mint!", image: "leafy.png" },
+      { text: "Gelatin, stop eating the contestants.", image: "gelatin.png" },
+      { text: "I want revenge!", image: "firey.png" },
+      { text: "Hey guys, for a prank-", image: "https://static.wikia.nocookie.net/battlefordreamisland/images/3/3e/BlockysFunnyDoings.png/revision/latest/scale-to-width-down/1000?cb=20230411030818" },
+      { text: "NO MORE SNOW!", image: "snowball.png" },
+      { text: "BEEP", image: "https://static.wikia.nocookie.net/battlefordreamisland/images/5/58/Roboty3.png/revision/latest/scale-to-width-down/1000?cb=20200916170602" },
+      { text: "Yoylecake!", image: "announcer.png" },
+      { text: "Aw seriously?", image: "bubble.png" },
+      { text: "Twooooooo!", image: "https://static.wikia.nocookie.net/battlefordreamisland/images/d/da/TwoBeforePowers.png/revision/latest/scale-to-width-down/1000?cb=20251207181841" },
+      { text: "This program was brought to you by Blocky's Funny Doings International.", image: "https://static.wikia.nocookie.net/battlefordreamisland/images/3/3e/BlockysFunnyDoings.png/revision/latest/scale-to-width-down/1000?cb=20230411030818"},
+      { text: "I am next level mad.", image: "flower.png" },
+      { text: "Donut, dig faster.", image: "barfbag.png" },
+      { text: "Four, recover them!", image: "x.png" },
+      { text: "No, I hate YOU!", image: "https://static.wikia.nocookie.net/battlefordreamisland/images/b/bc/FannyIDFB.png/revision/latest/scale-to-width-down/1000?cb=20220611164414" },
+      { text: "AAAAAAAAAAAAAAAA", image: "placeholder.png" },
+      { text: "This is so unfair!", image: "pencil.png" },
+      { text: "I love cake at stake!", image: "announcer.png" },
+      { text: "Eraser, that's kinda suspicious.", image: "teardrop.png" }
     ];
 
     function pad(n) {
@@ -99,7 +109,11 @@
       const seconds = pad(now.getSeconds());
 
       clock.innerText = `${hours}:${minutes}:${seconds}`;
-      quote.innerText = quotes[now.getHours()];
+
+      const current = quotes[now.getHours()];
+
+      quote.innerText = current.text;
+      speaker.src = current.image;
 
     }
 
