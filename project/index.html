@@ -1,16 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>Clock</title>
 
   <link rel="icon" type="image/png" href="icon.png">
 
   <style>
-
     @font-face {
       font-family: "BFDI";
       src: url("Shag-Lounge.otf");
@@ -43,6 +40,7 @@
       height: 220px;
       object-fit: contain;
       margin-bottom: 20px;
+      display: none;
     }
 
     #quote {
@@ -51,20 +49,17 @@
       font-size: 28px;
       color: white;
     }
-
   </style>
-
 </head>
 <body>
 
   <div id="clock">00:00:00</div>
 
-  <img id="speaker" src="placeholder.png" alt="Speaker">
+  <img id="speaker" alt="Speaker">
 
   <div id="quote">loading bfdi insanity...</div>
 
   <script>
-
     const clock = document.getElementById("clock");
     const quote = document.getElementById("quote");
     const speaker = document.getElementById("speaker");
@@ -85,7 +80,7 @@
       { text: "Yoylecake!", image: "announcer.png" },
       { text: "Aw seriously?", image: "bubble.png" },
       { text: "Twooooooo!", image: "https://static.wikia.nocookie.net/battlefordreamisland/images/d/da/TwoBeforePowers.png/revision/latest/scale-to-width-down/1000?cb=20251207181841" },
-      { text: "This program was brought to you by Blocky's Funny Doings International.", image: "https://static.wikia.nocookie.net/battlefordreamisland/images/3/3e/BlockysFunnyDoings.png/revision/latest/scale-to-width-down/1000?cb=20230411030818"},
+      { text: "This program was brought to you by Blocky's Funny Doings International.", image: "https://static.wikia.nocookie.net/battlefordreamisland/images/3/3e/BlockysFunnyDoings.png/revision/latest/scale-to-width-down/1000?cb=20230411030818" },
       { text: "I am next level mad.", image: "flower.png" },
       { text: "Donut, dig faster.", image: "barfbag.png" },
       { text: "Four, recover them!", image: "x.png" },
@@ -101,7 +96,6 @@
     }
 
     function CheckThisOut() {
-
       const now = new Date();
 
       const hours = pad(now.getHours());
@@ -113,14 +107,18 @@
       const current = quotes[now.getHours()];
 
       quote.innerText = current.text;
-      speaker.src = current.image;
 
+      if (current.image.startsWith("http")) {
+        speaker.src = current.image;
+        speaker.style.display = "block";
+      } else {
+        speaker.removeAttribute("src");
+        speaker.style.display = "none";
+      }
     }
 
     CheckThisOut();
-
     setInterval(CheckThisOut, 1000);
-
   </script>
 
 </body>
